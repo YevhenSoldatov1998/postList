@@ -1,12 +1,12 @@
+
 export type StateType = {
     items: Array<ItemType>
+    filterValue: string
 }
 export type ItemType = {
+    id: number,
     title: string,
     like: boolean,
 }
-export const state = {
-    items: [
-        {title: 'ddsfdsf', like: false, id: 1}
-    ]
-}
+
+

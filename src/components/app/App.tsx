@@ -3,13 +3,16 @@ import '../../App.css';
 import {AppHeader as Header} from "../app-header/AppHeader";
 import {SearchPanel} from '../search-panel/SearchPanel'
 import { PostLists } from '../post-lists/PostList';
-import {state} from '../redux/demo-state'
-function App() {
+import {StateType} from "../types/intefaces";
+import {connect} from "react-redux";
+
+
+const App: React.FC<StateType> = ({items, filterValue}) => {
     return (
         <div className="App">
             <Header/>
             <SearchPanel/>
-            <PostLists items={state.items} />
+            <PostLists items={items} />
             <div className={"search"}>
                 <input type="text" placeholder={"О чем вы думаете сейчас"}/>
                 <div className="btn-group">
@@ -19,5 +22,10 @@ function App() {
         </div>
     );
 }
-
-export default App;
+let mapStateToProps = (state: StateType) =>{
+    return{
+        items: state.items,
+        filterValue: state.filterValue
+    }
+}
+export default connect(mapStateToProps)(App);
